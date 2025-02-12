@@ -30,6 +30,11 @@ const reportSchema = new mongoose.Schema({
     updatedAt: {
         type: String,
         default: () => moment().tz('Asia/Dhaka').format(),
+    },
+    attachments: {
+        type: Array,
+        default: [],
+        required: true,
     }
 });
 

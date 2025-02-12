@@ -5,7 +5,6 @@ import User from '../schemas/User.js';
 
 report.create = async (req) => {
     try {
-        console.dir(req.user);
         const report = new Report({...req.body, createdBy: req.user.user});
         return await report.save();
     } catch (e) {
@@ -19,7 +18,10 @@ report.get = async(req) => {
         const query = {};
 
         if (filters.title) {
-            query.title = filters.title;
+            query.title = { $regex: filters.title, $options: 'i' };
+        }
+        if (filters.description) {
+            query.description = { $regex: filters.description, $options: 'i' };
         }
         if (filters.division) {
             query.division = filters.division;
