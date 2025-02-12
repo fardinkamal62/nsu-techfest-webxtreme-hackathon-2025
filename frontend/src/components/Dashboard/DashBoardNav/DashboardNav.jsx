@@ -69,7 +69,7 @@ export default function DashBoardNav() {
           </ul>
         </div>
         <div className="navbar-end gap-2">
-          <a className="btn">Create post</a>
+          <button className="btn" onClick={() => document.getElementById("post_modal").showModal()}> Create post </button>
           <a className="btn">Profile</a>
         </div>
       </div>
