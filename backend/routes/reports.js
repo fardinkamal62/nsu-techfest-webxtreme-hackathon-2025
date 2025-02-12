@@ -57,8 +57,8 @@ router.post('/', middlewares.default.authenticate, upload.array('files', 10), as
         });
         const run = await gemini.default.test(req.body.title, req.body.description, images);
 
-        if (run && run === 'No') {
-            res.status(400).json({ message: 'Invalid image. Photo is not relevant to the title and description' });
+        if (run && run.trim().toLowerCase() === 'no') {
+            return res.status(400).json({ message: 'Invalid image. Photo is not relevant to the title and description' });
         }
 
         const report = api.reportApi.default.create(req);
