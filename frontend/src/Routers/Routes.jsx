@@ -7,6 +7,7 @@ import Profile from "../components/Dashboard/Profile/Profile";
 import PassReset from "../components/Dashboard/PassReset/PassReset";
 import UpdateProfile  from "../components/Dashboard/Profile/UpdateProfile/UpdateProfile";
 import  ViewProfile  from "../components/Dashboard/Profile/ViewProfile/ViewProfile";
+import CrimePost from "../components/Dashboard/Profile/CrimePost/CrimePost"
 
 const router = createBrowserRouter([
   {
@@ -40,6 +41,10 @@ const router = createBrowserRouter([
           {
             path: "/dashboard/profile/ViewProfile",
             element: <ViewProfile/>
+          },
+          {
+            path: "/dashboard/profile/CrimePost",
+            element: <CrimePost/>
           }
         ],
       },

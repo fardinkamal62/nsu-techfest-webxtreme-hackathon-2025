@@ -93,7 +93,7 @@ export default function DashBoardNav() {
             {" "}
             Create post{" "}
           </button>
-          <NavLink className="btn" to="/dashboard/profile">Profile</NavLink>
+          <NavLink className="btn" to="/dashboard/profile/ViewProfile">Profile</NavLink>
             <CrimeReportPost/>
         </div>
       </div>

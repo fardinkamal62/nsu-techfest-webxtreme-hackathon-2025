@@ -13,14 +13,13 @@ export default function Profile() {
               <NavLink to="/dashboard/profile/update">Update Profile</NavLink>
             </li>
             <li>
-              <a>Posts</a>
+              <NavLink to="/dashboard/profile/CrimePost">Posts</NavLink>
             </li>
             <li>
               <a>Comments</a>
             </li>
           </ul>
         </div>
-
         <div>
           <Outlet />
         </div>
