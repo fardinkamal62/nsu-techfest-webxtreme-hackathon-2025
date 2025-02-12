@@ -1,3 +1,4 @@
+import { NavLink } from 'react-router-dom';
 import Swal from 'sweetalert2'
 
 const Signup = () => {
@@ -14,7 +15,7 @@ const Signup = () => {
 
     Swal.fire("SweetAlert2 is working!");
 
-    fetch("http://localhost:5000/api/v1/users/register", {
+    fetch("http://localhost:3000/api/v1/users/register", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -107,12 +108,12 @@ const Signup = () => {
 
           <div className="mt-6 text-center text-sm text-gray-600">
             Already have an account?
-            <a
+            <NavLink to="/login"
               href="#"
               className="text-indigo-600 hover:text-indigo-500 font-medium ps-1"
             >
               Log In
-            </a>
+            </NavLink>
           </div>
         </div>
       </div>

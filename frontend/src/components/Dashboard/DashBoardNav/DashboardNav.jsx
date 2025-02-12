@@ -1,9 +1,6 @@
-import { NavLink } from "react-router-dom";
-
-export default function Nav() {
+export default function DashBoardNav() {
   return (
     <>
-      <h1></h1>
       <div className="navbar bg-base-100">
         <div className="navbar-start">
           <div className="dropdown">
@@ -27,7 +24,7 @@ export default function Nav() {
               tabIndex={0}
               className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow"
             >
-              {/* <li>
+              <li>
                 <a>Item 1</a>
               </li>
               <li>
@@ -43,15 +40,15 @@ export default function Nav() {
               </li>
               <li>
                 <a>Item 3</a>
-              </li> */}
+              </li>
             </ul>
           </div>
-          <a className="btn btn-ghost text-xl">Nirapotta Kontho</a>
+          
         </div>
         <div className="navbar-center hidden lg:flex">
           <ul className="menu menu-horizontal px-1">
-            {/* <li>
-              <a>Item 1</a>
+            <li>
+              <a>Crime Feed</a>
             </li>
             <li>
               <details>
@@ -68,11 +65,12 @@ export default function Nav() {
             </li>
             <li>
               <a>Item 3</a>
-            </li> */}
+            </li>
           </ul>
         </div>
-        <div className="navbar-end">
-          <NavLink className="btn" to="/login">login</NavLink>
+        <div className="navbar-end gap-2">
+          <a className="btn">Create post</a>
+          <a className="btn">Profile</a>
         </div>
       </div>
     </>

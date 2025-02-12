@@ -1,3 +1,5 @@
+import { NavLink } from "react-router-dom";
+
 const Login = () => {
   // const handleSubmit = () => {};
 
@@ -55,12 +57,12 @@ const Login = () => {
 
           <div className="mt-6 text-center text-sm text-gray-600">
             Don't have an account?
-            <a
-              href="#"
+            <NavLink
+              to="/signup"
               className="text-indigo-600 hover:text-indigo-500 font-medium"
             >
               Sign up
-            </a>
+            </NavLink>
           </div>
         </div>
       </div>
