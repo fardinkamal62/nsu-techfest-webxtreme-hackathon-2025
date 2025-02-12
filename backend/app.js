@@ -6,10 +6,14 @@ var logger = require('morgan');
 var debug = require('debug')('backend:server');
 var http = require('http');
 
+const cors = require('cors');
+const bodyParser = require('body-parser');
+
 require('dotenv').config();
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
+const mongo = require('./database');
 
 var app = express();
 
@@ -23,6 +27,12 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+// Middleware
+app.use(cors());
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
+
+// Routes
 app.use('/api/v1', indexRouter);
 app.use('/api/v1/users', usersRouter);
 
@@ -47,66 +57,23 @@ function normalizePort(val) {
   return false;
 }
 
-
-function onError(error) {
-  if (error.syscall !== 'listen') {
-    throw error;
-  }
-
-  var bind = typeof port === 'string'
-    ? 'Pipe ' + port
-    : 'Port ' + port;
-
-  // handle specific listen errors with friendly messages
-  switch (error.code) {
-    case 'EACCES':
-      console.error(bind + ' requires elevated privileges');
-      process.exit(1);
-      break;
-    case 'EADDRINUSE':
-      console.error(bind + ' is already in use');
-      process.exit(1);
-      break;
-    default:
-      throw error;
-  }
-}
-
-/**
- * Event listener for HTTP server "listening" event.
- */
-
-function onListening() {
-  var addr = server.address();
-  console.log('Server listening on port ' + addr.port);
-  var bind = typeof addr === 'string'
-    ? 'pipe ' + addr
-    : 'port ' + addr.port;
-  debug('Listening on ' + bind);
-}
-
 var port = normalizePort(process.env.PORT || '4567');
 app.set('port', port);
 
-var server = http.createServer(app);
+app.listen(port, () => {
+	console.log('Starting Nirapottar Barta Backend...');
+	console.log('Connecting to database...');
 
-/**
- * Listen on provided port, on all network interfaces.
- */
-
-server.listen(port);
-server.on('error', onError);
-server.on('listening', onListening);
-
-// error handler
-app.use(function(err, req, res, next) {
-  // set locals, only providing error in development
-  res.locals.message = err.message;
-  res.locals.error = req.app.get('env') === 'development' ? err : {};
-
-  // render the error page
-  res.status(err.status || 500);
-  res.render('error');
+	try {
+		mongo.default.init(process.env.ENV === 'development' ? process.env.dev_uri : process.env.uri)
+			.then(() => {})
+			.catch((error) => {
+				throw error;
+			});
+	} catch (err) {
+		console.log('Error occurred, server can\'t start\n', err);
+		throw err;
+	}
 });
 
 module.exports = app;
