@@ -1,17 +1,21 @@
-import { Outlet } from "react-router-dom";
+import { NavLink, Outlet } from "react-router-dom";
 
 export default function Profile() {
   return (
     <>
-      <div className="flex flex-row justify-center border-t-4">
-        <div className="">
+      <div className="flex flex-col justify-center border-t-4">
+        <div className="flex">
           <ul className="menu menu-vertical lg:menu-horizontal bg-base-200 rounded-box mt-3">
             <li>
-              <a>Update Profile</a>
+              <NavLink to="/dashboard/profile/ViewProfile">View Profile</NavLink>
+            </li>
+            <li>
+              <NavLink to="/dashboard/profile/update">Update Profile</NavLink>
             </li>
             <li>
               <a>Posts</a>
-            </li><li>
+            </li>
+            <li>
               <a>Comments</a>
             </li>
           </ul>

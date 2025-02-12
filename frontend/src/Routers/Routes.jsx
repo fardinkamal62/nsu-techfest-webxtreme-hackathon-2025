@@ -5,6 +5,8 @@ import Signup from "../components/Signup/Signup";
 import DashBoard from "../components/Dashboard/Dashboard";
 import Profile from "../components/Dashboard/Profile/Profile";
 import PassReset from "../components/Dashboard/PassReset/PassReset";
+import UpdateProfile  from "../components/Dashboard/Profile/UpdateProfile/UpdateProfile";
+import  ViewProfile  from "../components/Dashboard/Profile/ViewProfile/ViewProfile";
 
 const router = createBrowserRouter([
   {
@@ -29,7 +31,17 @@ const router = createBrowserRouter([
     children: [
       {
         path: "/dashboard/profile",
-        element: <Profile/>
+        element: <Profile/>,
+        children: [
+          {
+            path: "/dashboard/profile/update",
+            element: <UpdateProfile/>
+          },
+          {
+            path: "/dashboard/profile/ViewProfile",
+            element: <ViewProfile/>
+          }
+        ],
       },
     ],
   }

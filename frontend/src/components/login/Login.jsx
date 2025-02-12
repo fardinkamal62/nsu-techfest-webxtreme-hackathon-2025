@@ -6,9 +6,10 @@ const Login = () => {
   const loginSuccess = () => toast("Welcome back");
 
   const handleSubmit = (e) => {
-    e.preventDefault();
-    const form = new FormData(e.currentTarget);
 
+    e.preventDefault();
+    
+    const form = new FormData(e.currentTarget);
     const email = form.get("email");
     const password = form.get("password");
 
