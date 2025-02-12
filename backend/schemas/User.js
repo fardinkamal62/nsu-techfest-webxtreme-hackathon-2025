@@ -53,7 +53,11 @@ const userSchema = new mongoose.Schema({
 	updatedAt: {
 		type: String,
 		default:() => moment().tz('Asia/Dhaka').format(),
-	}
+	},
+    userAccess: {
+        type: Number,
+        default: 1,
+    },
 });
 
 const User = mongoose.model('User', userSchema);

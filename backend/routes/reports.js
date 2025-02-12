@@ -37,7 +37,7 @@ router.post('/', middlewares.default.authenticate, function (req, res, next) {
     }
 });
 
-router.get('/', middlewares.default.authenticate, function (req, res, next) {
+router.get('/', function (req, res, next) {
     try {
         const report = api.reportApi.default.get(req);
         report.then((data) => {

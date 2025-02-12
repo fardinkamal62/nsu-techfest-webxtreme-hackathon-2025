@@ -23,7 +23,7 @@ userApi.login = async (req) => {
         }
 
         const secret = process.env.secret;
-        const sign = jwt.sign({ user: user._id }, secret);
+        const sign = jwt.sign({ user: user._id, role: user.userType }, secret);
 
         return { token: sign };
     } catch (e) {

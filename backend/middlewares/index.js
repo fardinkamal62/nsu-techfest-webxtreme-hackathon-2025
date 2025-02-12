@@ -30,4 +30,11 @@ middlewares.authenticate = (req, res, next) => {
     }
 }
 
+middlewares.isAdmin = (req, res, next) => {
+    if (req.user.role === 2) {
+        return next();
+    }
+    res.status(401).json({message: 'Unauthorised'})
+};
+
 export default middlewares;
