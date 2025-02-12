@@ -5,19 +5,21 @@ const Signup = () => {
     e.preventDefault();
     const form = new FormData(e.currentTarget);
     const phoneNumber = form.get("phoneNumber");
+    const firstName = form.get("firstName");
+    const lastName = form.get("lastName");
     const email = form.get("email");
     const password = form.get("password");
 
-    console.log(phoneNumber, email, password);
-    
+    console.log(firstName,lastName, phoneNumber, email, password);
+
     Swal.fire("SweetAlert2 is working!");
 
-    fetch("http://localhost:5000/ap1/v1/users/registration", {
+    fetch("http://localhost:5000/api/v1/users/register", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({phoneNumber, email, password}),
+        body: JSON.stringify({firstName, lastName, phoneNumber, email, password}),
       })
         .then((res) => res.json())
         .then((data) => {
@@ -25,7 +27,6 @@ const Signup = () => {
             e.target.reset();
           }
         });
-
   };
 
   return (
@@ -37,6 +38,31 @@ const Signup = () => {
           </h2>
 
           <form className="space-y-4" onSubmit={handleSubmit}>
+
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-1">
+                First name
+              </label>
+              <input
+                type="text"
+                name="firstName"
+                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none transition-all"
+                placeholder="firstName"
+              />
+            </div>
+
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-1">
+                Last name
+              </label>
+              <input
+                type="text"
+                name="firstName"
+                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none transition-all"
+                placeholder="lastName"
+              />
+            </div>
+
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">
                 Phone Number
@@ -48,6 +74,7 @@ const Signup = () => {
                 placeholder="phone number"
               />
             </div>
+
 
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">
