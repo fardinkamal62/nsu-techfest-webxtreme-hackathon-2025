@@ -1,8 +1,14 @@
 import { NavLink } from 'react-router-dom';
+import { ToastContainer, toast } from 'react-toastify';
 
 const Signup = () => {
+
+  const signupSuccess = () => toast("Sign up Successful");
+
   const handleSubmit = (e) => {
+    
     e.preventDefault();
+    
     const form = new FormData(e.currentTarget);
     const phoneNumber = form.get("phoneNumber");
     const firstName = form.get("firstName");
@@ -23,8 +29,11 @@ const Signup = () => {
         .then((data) => {
           if (data.insertedId) {
             e.target.reset();
+            // signupSuccess();
           }
         });
+
+        signupSuccess(); // remove when connects server routes
   };
 
   return (
@@ -46,6 +55,7 @@ const Signup = () => {
                 name="firstName"
                 className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none transition-all"
                 placeholder="firstName"
+                required
               />
             </div>
 
@@ -58,6 +68,7 @@ const Signup = () => {
                 name="firstName"
                 className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none transition-all"
                 placeholder="lastName"
+                required
               />
             </div>
 
@@ -70,6 +81,7 @@ const Signup = () => {
                 name="phoneNumber"
                 className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none transition-all"
                 placeholder="phone number"
+                required
               />
             </div>
 
@@ -83,6 +95,7 @@ const Signup = () => {
                 name="email"
                 className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none transition-all"
                 placeholder="your@email.com"
+                required
               />
             </div>
 
@@ -95,6 +108,7 @@ const Signup = () => {
                 name="password"
                 className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none transition-all"
                 placeholder="••••••••"
+                required
               />
             </div>
 
@@ -113,6 +127,7 @@ const Signup = () => {
             </NavLink>
           </div>
         </div>
+        <ToastContainer />
       </div>
     </>
   );

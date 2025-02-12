@@ -1,6 +1,8 @@
 import { useState } from "react";
 import DashBoardNav from "./DashBoardNav/DashboardNav";
 import { Outlet } from "react-router-dom";
+import { MdMenuOpen } from "react-icons/md";
+import { IoMdClose } from "react-icons/io";
 
 const DashBoard = () => {
   const [openSide, setOpenSide] = useState(true);
@@ -14,7 +16,7 @@ const DashBoard = () => {
             className="btn btn-square text-end"
             onClick={() => setOpenSide(!openSide)}
           >
-            {openSide ? "Close" : "Open"}   
+            {openSide ? <IoMdClose /> : <MdMenuOpen />}
           </button>
         </div>
       </div>
@@ -26,14 +28,14 @@ const DashBoard = () => {
       >
         <div className="px-8 pt-4">
           <a className="flex-none text-xl inline-block font-semibold text-gray-500">
-            DashBoard
+            Crime feed
           </a>
         </div>
 
         <nav className="hs-accordion-group p-6 w-full flex flex-col flex-wrap">
-          <ul className="menu rounded-box w-56 text-gray-700 border">
-            <li>
-              <a href="#"></a>
+          <ul className="menu w-56 text-gray-700">
+            <li className="bg-gray-600 rounded-md">
+              <a className="text-xl text-white">Profile</a>
             </li>
             <li>
               <a href=""></a>
@@ -43,8 +45,7 @@ const DashBoard = () => {
       </div>
 
       <div className="w-full pt-10 px-4 sm:px-6 md:px-8 lg:ps-72">
-        
-        <DashBoardNav/>
+        <DashBoardNav />
         <Outlet />
       </div>
     </>

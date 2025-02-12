@@ -7,7 +7,7 @@ function App() {
   return (
     <>
       <div className="min-h-screen bg-cover bg-center">
-      <Nav></Nav>
+      <Nav/>
       <Outlet />
       <Footer/>
     </div>

@@ -1,6 +1,10 @@
 import { NavLink } from "react-router-dom";
+import { toast, ToastContainer } from "react-toastify";
 
 const Login = () => {
+
+  const loginSuccess = () => toast("Welcome back");
+
   const handleSubmit = (e) => {
     e.preventDefault();
     const form = new FormData(e.currentTarget);
@@ -21,10 +25,13 @@ const Login = () => {
         .then((data) => {
           if (data.insertedId) {
             e.target.reset();
+            loginSuccess()
           }
         });
+
+        loginSuccess(); // fix it when it useing backend 
   };
-s
+
   return (
     <>
       <div className="min-h-screen bg-gray-100 flex items-center justify-center p-4">
@@ -43,6 +50,7 @@ s
                 name="email"
                 className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none transition-all"
                 placeholder="your@email.com"
+                required
               />
             </div>
 
@@ -55,6 +63,7 @@ s
                 name="password"
                 className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none transition-all"
                 placeholder="••••••••"
+                required
               />
             </div>
 
@@ -66,12 +75,12 @@ s
                 />
                 <span className="ml-2 text-sm text-gray-600">Remember me</span>
               </label>
-              <a
+              <NavLink to="/passwordReset"
                 href="#"
                 className="text-sm text-indigo-600 hover:text-indigo-500"
               >
                 Forgot password?
-              </a>
+              </NavLink>
             </div>
 
             <button className="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-medium py-2.5 rounded-lg transition-colors">
@@ -89,6 +98,7 @@ s
             </NavLink>
           </div>
         </div>
+        <ToastContainer />
       </div>
     </>
   );

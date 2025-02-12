@@ -1,3 +1,6 @@
+import { NavLink } from "react-router-dom";
+import CrimeReportPost from "../CrimeReport/CrimeReportPost";
+
 export default function DashBoardNav() {
   return (
     <>
@@ -43,14 +46,28 @@ export default function DashBoardNav() {
               </li>
             </ul>
           </div>
-          
+          <label className="input input-bordered flex items-center gap-2">
+            <input type="text" className="grow" placeholder="Search" />
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 16 16"
+              fill="currentColor"
+              className="h-4 w-4 opacity-70"
+            >
+              <path
+                fillRule="evenodd"
+                d="M9.965 11.026a5 5 0 1 1 1.06-1.06l2.755 2.754a.75.75 0 1 1-1.06 1.06l-2.755-2.754ZM10.5 7a3.5 3.5 0 1 1-7 0 3.5 3.5 0 0 1 7 0Z"
+                clipRule="evenodd"
+              />
+            </svg>
+          </label>
         </div>
         <div className="navbar-center hidden lg:flex">
           <ul className="menu menu-horizontal px-1">
-            <li>
-              <a>Crime Feed</a>
-            </li>
-            <li>
+            {/* <li>
+              <a className="text-xl">Crime Feed</a>
+            </li> */}
+            {/* <li>
               <details>
                 <summary>Parent</summary>
                 <ul className="p-2">
@@ -65,12 +82,19 @@ export default function DashBoardNav() {
             </li>
             <li>
               <a>Item 3</a>
-            </li>
+            </li> */}
           </ul>
         </div>
         <div className="navbar-end gap-2">
-          <button className="btn" onClick={() => document.getElementById("post_modal").showModal()}> Create post </button>
-          <a className="btn">Profile</a>
+          <button
+            className="btn"
+            onClick={() => document.getElementById("post_modal").showModal()}
+          >
+            {" "}
+            Create post{" "}
+          </button>
+          <NavLink className="btn" to="/dashboard/profile">Profile</NavLink>
+            <CrimeReportPost/>
         </div>
       </div>
     </>
