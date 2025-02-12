@@ -35,6 +35,10 @@ const reportSchema = new mongoose.Schema({
         type: Array,
         default: [],
         required: true,
+    },
+    crimeTime: {
+        type: String,
+        required: true,
     }
 });
 

@@ -15,7 +15,7 @@ const gemini = require('../services/ai');
 
 router.post('/', middlewares.default.authenticate, upload.array('files', 10), async function (req, res, next) {
     try {
-        utils.default.checkRequiredFields(['title', 'description', 'division', 'district'], req.body, next);
+        utils.default.checkRequiredFields(['title', 'description', 'division', 'district', 'crimeTime'], req.body, next);
 
         if (!req.files || req.files.length === 0) return res.status(400).json({ message: 'Attachment is required' });
 

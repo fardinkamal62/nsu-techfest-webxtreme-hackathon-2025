@@ -1,10 +1,13 @@
 const report = {};
 
+import moment from 'moment-timezone';
+
 import Report from '../schemas/Report.js';
 import User from '../schemas/User.js';
 
 report.create = async (req) => {
     try {
+        req.body.crimeTime = moment(req.body.crimeTime).tz('Asia/Dhaka').format();
         const report = new Report({...req.body, createdBy: req.user.user});
         return await report.save();
     } catch (e) {
