@@ -13,8 +13,6 @@ const Signup = () => {
 
     console.log(firstName,lastName, phoneNumber, email, password);
 
-    Swal.fire("SweetAlert2 is working!");
-
     fetch("http://localhost:3000/api/v1/users/register", {
         method: "POST",
         headers: {

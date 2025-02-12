@@ -14,7 +14,7 @@ const DashBoard = () => {
             className="btn btn-square text-end"
             onClick={() => setOpenSide(!openSide)}
           >
-            {openSide ? "Close" : "Open"}
+            {openSide ? "Close" : "Open"}   
           </button>
         </div>
       </div>
@@ -33,7 +33,7 @@ const DashBoard = () => {
         <nav className="hs-accordion-group p-6 w-full flex flex-col flex-wrap">
           <ul className="menu rounded-box w-56 text-gray-700 border">
             <li>
-              <a href="#">Home</a>
+              <a href="#"></a>
             </li>
             <li>
               <a href=""></a>
