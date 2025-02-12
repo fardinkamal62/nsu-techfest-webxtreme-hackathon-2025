@@ -1,6 +1,7 @@
 const report = {};
 
 import Report from '../schemas/Report.js';
+import User from '../schemas/User.js';
 
 report.create = async (req) => {
     try {
@@ -35,5 +36,53 @@ report.get = async(req) => {
         throw new Error(e.message);
     }
 }
+
+report.update = async(req) => {
+    try {
+        const report = await Report.findById(req.params.id);
+        if (!report) {
+            throw new Error('Report not found');
+        }
+
+        const user = await User.findById(req.user.user);
+        if (!user) {
+            throw new Error('User not found');
+        }
+
+        if (report.createdBy.toString() !== user._id.toString()) {
+            throw new Error('You are not authorized to update this report');
+        }
+
+        Object.keys(req.body).forEach(key => {
+            report[key] = req.body[key];
+        });
+
+        return await report.save();
+    } catch (e) {
+        throw new Error(e.message);
+    }
+};
+
+report.delete = async(req) => {
+    try {
+        const report = await Report.findById(req.params.id);
+        if (!report) {
+            throw new Error('Report not found');
+        }
+
+        const user = await User.findById(req.user.user);
+        if (!user) {
+            throw new Error('User not found');
+        }
+
+        if (report.createdBy.toString() !== user._id.toString()) {
+            throw new Error('You are not authorized to delete this report');
+        }
+
+        return await report.remove();
+    } catch (e) {
+        throw new Error(e.message);
+    }
+};
 
 export default report;
