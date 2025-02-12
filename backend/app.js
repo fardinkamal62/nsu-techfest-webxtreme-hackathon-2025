@@ -14,6 +14,7 @@ require('dotenv').config();
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
 const reportRouter = require('./routes/reports');
+const commentRouter = require('./routes/comments');
 
 const mongo = require('./database');
 
@@ -38,6 +39,7 @@ app.use(bodyParser.json());
 app.use('/api/v1', indexRouter);
 app.use('/api/v1/users', usersRouter);
 app.use('/api/v1/report', reportRouter);
+app.use('/api/v1/comment', commentRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
