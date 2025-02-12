@@ -14,7 +14,23 @@ report.create = async (req) => {
 
 report.get = async(req) => {
     try {
-        return await Report.find();
+        const filters = req.query;
+        const query = {};
+
+        if (filters.title) {
+            query.title = filters.title;
+        }
+        if (filters.division) {
+            query.division = filters.division;
+        }
+        if (filters.district) {
+            query.district = filters.district;
+        }
+        if (filters.createdBy) {
+            query.createdBy = filters.createdBy;
+        }
+
+        return await Report.find(query);
     } catch (e) {
         throw new Error(e.message);
     }
