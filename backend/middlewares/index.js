@@ -14,19 +14,19 @@ middlewares.authenticate = (req, res, next) => {
         const header = req.headers['authorization']
         const token = header && header.split(' ')[1]
         if (token === undefined) {
-            res.json({code: 401, message: 'Unauthorised'})
+            res.status(401).json({message: 'Unauthorised'})
         }
         return jwt.verify(token, process.env.secret, (err, user) => {
             if (err) {
                 console.log(err)
-                res.json({code: 403, message: 'Mismatch'})
+                res.status(401).json({message: 'Mismatch'})
             }
             req.user = user
             next()
         })
     } catch (e) {
         console.log(e)
-        res.json({data: "Please Contact Admin", code: 500})
+        res.status(401).json({data: "Please Contact Admin"})
     }
 }
 
