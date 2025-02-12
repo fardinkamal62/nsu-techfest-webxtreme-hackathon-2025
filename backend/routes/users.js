@@ -62,4 +62,14 @@ router.post('/register', function (req, res, next) {
   }
 });
 
+router.get('/profile', function (req, res, next) {
+  const userProfile = api.getProfile(req, res)
+    .then((data) => {
+      res.status(200).json(data);
+    })
+    .catch((error) => {
+      res.status(500).json({ error: error.message });
+    });
+});
+
 module.exports = router;

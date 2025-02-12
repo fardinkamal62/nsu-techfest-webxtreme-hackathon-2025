@@ -1,6 +1,27 @@
 import { NavLink, Outlet } from "react-router-dom";
+import { useState, useEffect } from "react";
 
 export default function Profile() {
+  const [data, setData] = useState([]);
+  const [token, setToken] = useState();
+
+
+  useEffect(() => {
+    localStorage.getItem("token") && setToken(localStorage.getItem("token"));
+  }, [token]);
+
+  useEffect(() => {
+    fetch("http://localhost:3000/api/v1/users/profile", {
+      method: "GET",
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
+      .then((response) => response.json())
+      .then((data) => setData(data.data))
+      .catch((error) => console.log("error", error));
+  });
+
   return (
     <>
       <div className="flex flex-col justify-center border-t-4">

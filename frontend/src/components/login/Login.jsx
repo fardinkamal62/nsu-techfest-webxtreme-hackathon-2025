@@ -1,7 +1,15 @@
 import { NavLink } from "react-router-dom";
 import { toast, ToastContainer } from "react-toastify";
+import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
+  const [token, setToken] = useState([]);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    localStorage.setItem('token', JSON.stringify(token));
+  }, [token]);
 
   const loginSuccess = () => toast("Welcome back");
 
@@ -13,8 +21,6 @@ const Login = () => {
     const email = form.get("email");
     const password = form.get("password");
 
-    console.log(email, password);
-
     fetch("http://localhost:3000/api/v1/users/login", {
         method: "POST",
         headers: {
@@ -24,13 +30,14 @@ const Login = () => {
       })
         .then((res) => res.json())
         .then((data) => {
-          if (data.insertedId) {
+          if (!data.error) {
             e.target.reset();
+            console.dir(data.data.token);
             loginSuccess()
+            setToken(data.data.token);
+            navigate("/dashboard");
           }
         });
-
-        loginSuccess(); // fix it when it useing backend 
   };
 
   return (
